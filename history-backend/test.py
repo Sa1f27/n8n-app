@@ -1,3 +1,7 @@
+#this file was created to test the functionality of the web scraper and lated to ad into the history model for scraping links
+# This script is a web scraper that extracts educational content from various websites,
+# summarizes it using the Groq API, and stores the results in a MongoDB database.
+
 import asyncio
 import os
 import logging
