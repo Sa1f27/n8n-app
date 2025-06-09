@@ -1,10 +1,8 @@
 fastapi
-uvicorn
+uvicorn[standard]
 httpx
 pydantic
-crawl4ai
-pymongo
-aiohttp
+openai
 beautifulsoup4
-crawl4ai[all] 
-motor 
+aiohttp
+tenacity

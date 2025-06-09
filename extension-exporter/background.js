@@ -17,7 +17,7 @@ async function fetchHistory() {
 }
 async function sendToBackend(historyItems) {
     try {
-        const response = await fetch('http://localhost:8001/api/ingest', {
+        const response = await fetch('http://localhost:8000/api/ingest', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
