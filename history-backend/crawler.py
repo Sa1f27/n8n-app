@@ -2,7 +2,6 @@ import json
 import asyncio
 import logging
 from crawl4ai import AsyncWebCrawler
-from crawl4ai.extraction_strategy import CssExtractionStrategy
 from typing import Optional
 
 # Configure logging
@@ -11,7 +10,8 @@ logger = logging.getLogger(__name__)
 
 async def crawl_and_extract(url: str, html_content: Optional[str], semaphore: asyncio.Semaphore) -> str:
     """
-    Use Crawl4AI to extract structured data (headline and summary) from a URL or its HTML content.
+    Use Crawl4AI to extract structured data from a URL or its HTML content.
+    Updated for current crawl4ai version.
     
     Args:
         url: The URL to process.
@@ -24,13 +24,6 @@ async def crawl_and_extract(url: str, html_content: Optional[str], semaphore: as
     async with semaphore:
         try:
             async with AsyncWebCrawler(verbose=True) as crawler:
-                # Define extraction strategy with robust CSS selectors
-                extraction_strategy = CssExtractionStrategy(
-                    schema={
-                        "headline": "h1, h2, .headline, .title, [itemprop='headline']",
-                        "summary": "p:first-of-type, .summary, .lead, [itemprop='description'], meta[name='description']::attr(content)"
-                    }
-                )
                 logger.info(f"Starting extraction for {url}")
 
                 # Use existing HTML if available, otherwise fetch
@@ -38,28 +31,31 @@ async def crawl_and_extract(url: str, html_content: Optional[str], semaphore: as
                     result = await crawler.arun(
                         url=url,
                         html_content=html_content,
-                        extraction_strategy=extraction_strategy,
                         bypass_cache=True
                     )
                 else:
                     result = await crawler.arun(
                         url=url,
-                        extraction_strategy=extraction_strategy
+                        bypass_cache=True
                     )
 
-                # Handle multiple matches by taking the first non-empty result
-                extracted_data = {}
-                for key, value in result.extracted_content.items():
-                    if isinstance(value, list) and value:
-                        extracted_data[key] = value[0]
-                    elif value:
-                        extracted_data[key] = value
-                    else:
-                        extracted_data[key] = ""
+                if not result.success:
+                    logger.error(f"Crawl4AI failed for {url}: {result.error_message}")
+                    raise Exception(f"Crawl4AI failed for {url}: {result.error_message}")
+
+                # Extract basic structured data from the result
+                extracted_data = {
+                    "headline": result.metadata.get("title", "") if result.metadata else "",
+                    "summary": result.cleaned_html[:500] + "..." if result.cleaned_html else ""
+                }
                 
-                extracted_data = extracted_data or {"headline": "", "summary": ""}
+                # Try to extract more structured data if available
+                if hasattr(result, 'extracted_content') and result.extracted_content:
+                    extracted_data.update(result.extracted_content)
+                
                 logger.info(f"Extracted data for {url}: {extracted_data}")
                 return json.dumps(extracted_data)
+                
         except Exception as e:
             logger.error(f"Crawl4AI extraction failed for {url}: {str(e)}")
             raise Exception(f"Crawl4AI extraction failed for {url}: {str(e)}")
