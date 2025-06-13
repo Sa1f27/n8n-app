@@ -30,15 +30,12 @@ Crawl4AI: Ensure internet access for Crawl4AI dependencies
 Setup Instructions
 1. Chrome Extension Setup
 
-Navigate to the extension directory:cd history-exporter-project/history-exporter-extension
-
-
-Install dependencies:npm install
+Navigate to the extension directory:cd exporter-extension
 
 
 Build the extension:npm run build
 
-This compiles TypeScript files and copies popup.html and manifest.json to the dist/ folder.
+This compiles TypeScript files and copies popup.html and manifest.json to the extension-exporter/ folder.
 Load the extension in Chrome:
 Open Chrome and go to chrome://extensions/.
 Enable "Developer mode" (top right).
@@ -59,7 +56,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 Install dependencies:pip install -r requirements.txt
 
 
-Start the FastAPI server:uvicorn main:app --host 0.0.0.0 --port 8000
+Start the FastAPI server:python main.py
 
 The server will be accessible at http://localhost:8000.
 

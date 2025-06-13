@@ -6,3 +6,5 @@ openai
 beautifulsoup4
 aiohttp
 tenacity
+groq
+lxml
