@@ -50,7 +50,6 @@ OPENAI_API_KEY=your_openai_api_key_here
 cd history-backend
 python main.py
 ```
-Backend runs on: http://localhost:8000
 
 2. **Install Chrome Extension:**
    - Open Chrome → Extensions → Developer Mode ON
