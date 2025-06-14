@@ -1,27 +1,14 @@
-# KnowledgeGraph MindCanvas - AI-Powered Knowledge Management System
+# KnowledgeGraph - AI-Powered Knowledge Management System
 
 AI-powered intelligent categorization and filtering capabilities.
 
 ## Quick Setup (Windows)
 
-### Prerequisites
-```cmd
-# Install Python 3.9+
-choco install python
-
-# Install Node.js (for development tools)
-choco install nodejs
-
-# Verify installations
-python --version
-pip --version
-```
-
 ### Environment Setup
 ```cmd
 # Clone repository
-git clone https://github.com/Sa1f27/MindCanvas.git
-cd MindCanvas
+git clone https://github.com/Sa1f27/KnowledgeGraph.git
+cd KnowledgeGraph
 
 # Create virtual environment
 python -m venv venv
@@ -59,18 +46,6 @@ python main.py
 3. **Access Dashboard:**
    - Open: http://localhost:8000/static/index.html
 
-## Tech Stack
-- **Backend:** FastAPI + SQLite + Groq Llama + OpenAI
-- **Content Extraction:** Hybrid (BeautifulSoup + Crawl4AI)
-- **Caching:** Multi-level (Memory + Database)
-- **Frontend:** Vanilla JS + Modern CSS
-
-## Troubleshooting
-- **Backend not starting:** Check Python version and dependencies
-- **Extension not working:** Ensure backend is running on port 8000
-- **No content processed:** Verify API keys in `.env` file
-- **Database issues:** Delete `mindcanvas.db` and restart
-
 ## Data Management
 ```cmd
 # Clear all data from DB
@@ -81,12 +56,4 @@ python cleanup.py
 ```cmd
 # Unit tests
 python test.py
-```
-
-## Project Structure
-```
-mindcanvas/
-├── extension-exporter/  # Chrome extension
-├── history-backend/     # FastAPI backend
-└── static/             # Dashboard frontend
 ```
