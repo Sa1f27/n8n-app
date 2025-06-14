@@ -1,6 +1,6 @@
-# MindCanvas - AI-Powered Knowledge Management System
+# KnowledgeGraph MindCanvas - AI-Powered Knowledge Management System
 
-AI-powered browser history processing with intelligent categorization and filtering capabilities.
+AI-powered intelligent categorization and filtering capabilities.
 
 ## Quick Setup (Windows)
 
@@ -58,12 +58,6 @@ python main.py
 
 3. **Access Dashboard:**
    - Open: http://localhost:8000/static/index.html
-
-## Usage Flow
-1. Browse websites normally
-2. Click MindCanvas extension → Export History (24h)
-3. View processed content in Dashboard
-4. Use filters and search to explore your knowledge
 
 ## Tech Stack
 - **Backend:** FastAPI + SQLite + Groq Llama + OpenAI
