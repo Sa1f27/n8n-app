@@ -125,6 +125,8 @@ pip install -r requirements.txt
 
 Run the workflow ingestion script:
 ```bash
+pip install -r requirements.txt
+
 python ingest-n8n-workflows.py
 ```
 
