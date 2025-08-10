@@ -3,12 +3,7 @@ from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_anthropic import ChatAnthropic
 from supabase import create_client, Client
 from dotenv import load_dotenv
-import requests
-import json
-import time
-import os
 
-load_dotenv()
 model = os.getenv('LLM_MODEL', 'gpt-4o')
 embedding_model = os.getenv('EMBEDDING_MODEL', 'text-embedding-3-small')
 supabase_url = os.getenv('SUPABASE_URL')
