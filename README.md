@@ -1,4 +1,4 @@
-# n8n Agent Workflow code
+# n8n Agent Workflow
 
 The n8n Expert Agent helps you find and understand n8n automation workflows. Simply describe what you're trying to automate, and the agent will recommend relevant workflows to help you get started.
 
